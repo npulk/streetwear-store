@@ -1,0 +1,50 @@
+#cartButton {
+    position: absolute;
+    bottom: 70px; /* Distance from the bottom */
+    right: 70px; /* Distance from the right */
+    padding: 10px 20px; /* Padding for the button */
+    background-color: #ffffff; /* Background color */
+    color: black; /* Text color */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+  }
+
+#cartButton:hover {
+    background-color: maroon;
+    color: white;
+}
+
+.header-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px; /* Adjust the height as needed */
+    width: 100%;
+  }
+  
+  /* Optional styling for the h1 */
+  h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 2em; /* Adjust the font size as needed */
+    color: black; /* Adjust the color as needed */
+  }
+
+  #loginButton {
+    position: absolute;
+    top: 70px; /* Distance from the top */
+    left: 70px; /* Distance from the left */
+    padding: 10px 20px; /* Padding for the button */
+    background-color: white; /* Background color */
+    color: black; /* Text color */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+  }
+  
+  /* Optional: Add some hover effects */
+  #loginButton:hover {
+    background-color: maroon;
+    color: white;
+  }
