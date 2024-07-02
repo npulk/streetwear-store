@@ -58,6 +58,14 @@ export class ItemList {
       this.#items = await this.#getItems();
     }
 
+    const parentContainer = document.createElement('div');
+    parentContainer.id = 'parent-container';
+
+    const searchInput = document.createElement('input');
+    searchInput.id = 'search-input';
+    searchInput.type = 'text';
+    searchInput.placeholder = 'Search items...';
+
     const itemListElm = document.createElement('div');
     itemListElm.id = 'item-list';
 
@@ -67,13 +75,15 @@ export class ItemList {
     listItems.forEach(li => this.#list.appendChild(li));
 
     itemListElm.appendChild(this.#list);
+    parentContainer.appendChild(searchInput);
+    parentContainer.appendChild(itemListElm);
 
     // this.#events.subscribe('add-cart', item => {
     //   const li = this.#makeItem(task);
     //   this.#list.appendChild(li);
     // });
 
-    return itemListElm;
+    return parentContainer;
   }
 
   #makeItem(task) {

@@ -58,7 +58,7 @@ class ItemList {
     if (this.#items === null) {
       this.#items = await this.#getItems();
     }
-
+    
     const itemListElm = document.createElement('div');
     itemListElm.id = 'item-list';
 
@@ -88,10 +88,10 @@ class ItemList {
     //button.classList.add(''); eventually for styling
 
     button.addEventListener('click', async () => {
-    //   await this.#events.publish('add-cart', item); can use later for stock management
-        this.#removeFromCart(item.id);
-        this.#removeListItem(item.id);
-        this.render();
+        await this.#removeFromCart(item.id);
+        this.#items = this.#items.filter(i => i.id !== item.id);
+        this.render(); // Assumes this method correctly handles UI refresh based on this.#items
+        location.reload();
     });
 
     li.appendChild(button);
@@ -110,17 +110,8 @@ class ItemList {
   async #removeFromCart(id) {
     await fetch('/cart', {
       method: 'DELETE',
-      body: JSON.stringify({ id }),
+      body: id,
     });
-  }
-
-  #removeListItem(id) {
-    const li = this.#list.querySelector(`li[data-id='${id}']`);
-    if (li) {
-      this.#list.removeChild(li);
-    } else {
-      console.error(`Item with id ${id} not found in the list.`);
-    }
   }
 
 //   async #deleteTask(id) {

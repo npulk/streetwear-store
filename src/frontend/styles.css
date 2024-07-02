@@ -49,12 +49,24 @@
     color: maroon;
 }
 
+#search-input {
+    display: block;
+    width: 60%;
+    height: 40px;
+    padding: 0 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 0 auto 20px auto; /* Center the search input horizontally */
+}
+
 /* Container for item cards */
 #item-list {
     display: flex;
     flex-wrap: wrap; /* Allows wrapping of items to the next line */
     justify-content: center; /* Centers the items horizontally */
     gap: 20px; /* Space between items */
+    padding: 0; /* Remove default padding */
+    list-style: none; /* Remove default list styling */
 }
 
 /* Style for each item card */
@@ -74,13 +86,24 @@
 .item button {
     margin-top: 10px; /* Space above the button */
     padding: 10px 20px; /* Padding inside the button */
-    background-color: maroon; /* Button background color */
+    background-color: black; /* Button background color */
     color: white; /* Button text color */
     border: none; /* Remove button border */
     border-radius: 5px; /* Rounded corners for the button */
     cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for hover effects */
 }
 
 .item button:hover {
-    background-color: darkred; /* Darker background on hover */
+    background-color: maroon; /* Darker background on hover */
+}
+
+.parent-container { /* Replace .parent-container with the actual class or ID of the parent container */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center align the children if needed */
+}
+
+.button:hover, .header-container .home-header a:hover {
+    transition: background-color 0.3s ease, color 0.3s ease;
 }

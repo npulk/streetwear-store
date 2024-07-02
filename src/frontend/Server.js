@@ -7,6 +7,7 @@ class Database {
       ],
       cartItems: [
         { id: 2, name: 'example cart item 1' }, { id: 3, name: 'example cart item 2' },
+        {  id: 4, name: 'example cart item 3'}, { id: 5, name: 'example cart item 4' },
       ],
     };
   
