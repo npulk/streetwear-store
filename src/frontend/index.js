@@ -11,4 +11,4 @@ const resetState = () => {
   app.render('root');
 };
 
-// document.getElementById('reset-state').addEventListener('click', resetState);
+document.getElementById('reset-state').addEventListener('click', resetState);

@@ -3,10 +3,10 @@ class Database {
   
     static #initial = {
       items: [
-        { id: 1, name: 'example clothing' },
+        { id: 1, name: 'example clothing 1' }, { id: 2, name: 'example clothing 2' },
       ],
       cartItems: [
-        { id: 2, name: 'example cart item' },
+        { id: 2, name: 'example cart item 1' }, { id: 3, name: 'example cart item 2' },
       ],
     };
   

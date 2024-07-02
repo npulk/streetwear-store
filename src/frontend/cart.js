@@ -1,7 +1,8 @@
 import { Events } from './Events.js';
 import { fetch } from './Server.js';
+import { Item } from './home.js';
 
-export class HomeView {
+export class CartView {
   constructor() {}
 
   async render() {
@@ -44,7 +45,7 @@ export class HomeView {
 // }
 
 
-export class ItemList {
+class ItemList {
   #events = null;
   #items = null;
   #list = null;
@@ -76,20 +77,21 @@ export class ItemList {
     return itemListElm;
   }
 
-  #makeItem(task) {
+  #makeItem(item) {
     const li = document.createElement('li');
     li.classList.add('item');
-    li.innerText = task.name;
-    li.id = task.id;
+    li.innerText = item.name;
+    li.id = item.id;
 
     const button = document.createElement('button');
-    button.innerText = 'Add to cart';
+    button.innerText = 'Remove from cart';
     //button.classList.add(''); eventually for styling
 
     button.addEventListener('click', async () => {
     //   await this.#events.publish('add-cart', item); can use later for stock management
-      this.#addToCart(task.id);
-      this.render();
+        this.#removeFromCart(item.id);
+        this.#removeListItem(item.id);
+        this.render();
     });
 
     li.appendChild(button);
@@ -97,7 +99,7 @@ export class ItemList {
   }
 
   async #getItems() {
-    const response = await fetch('/items');
+    const response = await fetch('/cart');
     if (response.status === 200) {
       return this.#parse(response.body);
     } else {
@@ -105,11 +107,20 @@ export class ItemList {
     }
   }
 
-  async #addToCart(id) {
+  async #removeFromCart(id) {
     await fetch('/cart', {
-      method: 'POST',
-      body: JSON.stringify(this.#items.find(item => item.id === id)),
+      method: 'DELETE',
+      body: JSON.stringify({ id }),
     });
+  }
+
+  #removeListItem(id) {
+    const li = this.#list.querySelector(`li[data-id='${id}']`);
+    if (li) {
+      this.#list.removeChild(li);
+    } else {
+      console.error(`Item with id ${id} not found in the list.`);
+    }
   }
 
 //   async #deleteTask(id) {
@@ -123,20 +134,34 @@ export class ItemList {
 //     });
 // }
 
-  #parse(json) {
-    const obj = JSON.parse(json);
+   #parse(json) {
+    let obj;
+    try {
+        obj = JSON.parse(json);
+        console.log(obj);
+        console.log(json);
+    } catch (e) {
+        console.error("Invalid JSON:", e);
+        return [];
+    }
+
+    if (!Array.isArray(obj)) {
+        console.error("Parsed JSON is not an array");
+        return [obj];
+    }
+
+    console.log(obj);
     const items = obj.map(item => new Item(item.name, item.id));
     return items;
-  }
-}
-
-export class Item {
-  constructor(name, id) {
-    if (id === undefined) {
-      this.id = Math.random().toString(36);
-    } else {
-      this.id = id;
     }
-    this.name = name;
-  }
 }
+// class ItemList {
+//   constructor(name, id) {
+//     if (id === undefined) {
+//       this.id = Math.random().toString(36);
+//     } else {
+//       this.id = id;
+//     }
+//     this.name = name;
+//   }
+// }

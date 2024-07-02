@@ -1,11 +1,13 @@
 
 import { Events } from './Events.js';
 import { HomeView } from './home.js';
+import { CartView } from './cart.js';
 
 
 export class App {
   #homeViewElm = null;
   #mainViewElm = null;
+  #cartViewElm = null;
   #events = null;
 
   constructor() {
@@ -23,6 +25,9 @@ export class App {
     loginLink.innerText = 'Login/User';
     loginLink.classList.add('button');
     loginLink.id = 'loginButton';
+    loginLink.addEventListener('click', async e => {
+
+    })
     loginLinkContainer.appendChild(loginLink);
 
     const cartLinkContainer = document.createElement('div');
@@ -72,12 +77,18 @@ export class App {
 
     rootElm.appendChild(this.#mainViewElm)
 
-    // const archiveListView = new ArchiveView(); new view will go here
-    // this.#archivelistViewElm = await archiveListView.render();
+    const cartView = new CartView();
+    this.#cartViewElm = await cartView.render();
 
     const homeView = new HomeView();
     this.#homeViewElm = await homeView.render();
-    this.#navigateTo('home');
+
+    const currentHash = window.location.hash.replace('#', '');
+    if (currentHash) {
+      this.#navigateTo(currentHash);
+    } else {
+      this.#navigateTo('home');
+    }
 
     this.#events.subscribe('navigateTo', view => this.#navigateTo(view));
 
@@ -88,10 +99,10 @@ export class App {
     if (view === 'home') {
       this.#mainViewElm.appendChild(this.#homeViewElm);
       window.location.hash = view;
-    } else if (view === 'login') {
+    } else if (view === 'cart') {
       // TODO: this is where we want to add the archive view
-    //   this.#mainViewElm.appendChild(this.#archivelistViewElm);
-    //   window.location.hash = view;
+      this.#mainViewElm.appendChild(this.#cartViewElm);
+      window.location.hash = view;
     } else {
       this.#mainViewElm.appendChild(this.todolist);
       window.location.hash = 'home';
