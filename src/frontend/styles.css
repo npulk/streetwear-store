@@ -1,18 +1,30 @@
-#cartButton {
-    position: absolute;
-    bottom: 70px; /* Distance from the bottom */
-    right: 70px; /* Distance from the right */
-    padding: 10px 20px; /* Padding for the button */
-    background-color: #ffffff; /* Background color */
-    color: black; /* Text color */
-    border: none; /* Remove border */
-    border-radius: 5px; /* Rounded corners */
-    cursor: pointer; /* Pointer cursor on hover */
-  }
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: white;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none; /* Remove underline */
+    text-align: center;
+}
 
-#cartButton:hover {
+.button:hover {
     background-color: maroon;
     color: white;
+}
+
+#cartButton {
+    position: absolute;
+    bottom: 70px;
+    right: 70px;
+}
+
+#loginButton {
+    position: absolute;
+    top: 70px;
+    left: 70px;
 }
 
 .header-container {
@@ -21,30 +33,54 @@
     align-items: center;
     height: 100px; /* Adjust the height as needed */
     width: 100%;
-  }
-  
-  /* Optional styling for the h1 */
-  h1 {
-    margin: 0;
-    padding: 0;
+    margin-top: 100px;
+    margin-bottom: 50px;
+}
+
+/* Style for the header link */
+.header-container .home-header a {
     font-size: 2em; /* Adjust the font size as needed */
     color: black; /* Adjust the color as needed */
-  }
+    text-decoration: none; /* Remove underline */
+    font-weight: bold;
+}
 
-  #loginButton {
-    position: absolute;
-    top: 70px; /* Distance from the top */
-    left: 70px; /* Distance from the left */
-    padding: 10px 20px; /* Padding for the button */
-    background-color: white; /* Background color */
-    color: black; /* Text color */
-    border: none; /* Remove border */
-    border-radius: 5px; /* Rounded corners */
+.header-container .home-header a:hover {
+    color: maroon;
+}
+
+/* Container for item cards */
+#item-list {
+    display: flex;
+    flex-wrap: wrap; /* Allows wrapping of items to the next line */
+    justify-content: center; /* Centers the items horizontally */
+    gap: 20px; /* Space between items */
+}
+
+/* Style for each item card */
+.item {
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+    align-items: center; /* Center content horizontally */
+    width: 200px; /* Set a fixed width for each card */
+    padding: 20px; /* Padding inside each card */
+    background-color: white; /* Background color of the card */
+    border: 1px solid #ccc; /* Border around the card */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Style for the button inside each item card */
+.item button {
+    margin-top: 10px; /* Space above the button */
+    padding: 10px 20px; /* Padding inside the button */
+    background-color: maroon; /* Button background color */
+    color: white; /* Button text color */
+    border: none; /* Remove button border */
+    border-radius: 5px; /* Rounded corners for the button */
     cursor: pointer; /* Pointer cursor on hover */
-  }
-  
-  /* Optional: Add some hover effects */
-  #loginButton:hover {
-    background-color: maroon;
-    color: white;
-  }
+}
+
+.item button:hover {
+    background-color: darkred; /* Darker background on hover */
+}
