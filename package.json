@@ -46,14 +46,25 @@
 
   "contributors": [],
 
-"scripts": {
-    "start": "http-server src/frontend -p 3000 -c-1 -o -s"
-  },
+  "scripts": {
 
+    "start": "node src/server.js"
+
+  },
 
   "dependencies": {
 
-    "http-server": "^14.1.1"
+    "cors": "^2.8.5",
+
+    "express": "^4.19.2",
+
+    "http-server": "^14.1.1",
+
+    "pouchdb": "^9.0.0",
+
+    "pouchdb-browser": "^9.0.0",
+
+    "pouchdb-find": "^9.0.0"
 
   }
 

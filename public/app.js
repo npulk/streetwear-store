@@ -8,6 +8,7 @@ export class App {
   #homeViewElm = null;
   #mainViewElm = null;
   #cartViewElm = null;
+  #cartView = null;
   #events = null;
 
   constructor() {
@@ -77,8 +78,8 @@ export class App {
 
     rootElm.appendChild(this.#mainViewElm)
 
-    const cartView = new CartView();
-    this.#cartViewElm = await cartView.render();
+    this.#cartView = new CartView();
+    this.#cartViewElm = await this.#cartView.render();
 
     const homeView = new HomeView();
     this.#homeViewElm = await homeView.render();
@@ -94,17 +95,18 @@ export class App {
 
   }
 
-  #navigateTo(view) {
+  async #navigateTo(view) {
     this.#mainViewElm.innerHTML = '';
     if (view === 'home') {
       this.#mainViewElm.appendChild(this.#homeViewElm);
       window.location.hash = view;
     } else if (view === 'cart') {
-      // TODO: this is where we want to add the archive view
+      // Update the cart view before showing it
+      await this.#cartView.updateView();
       this.#mainViewElm.appendChild(this.#cartViewElm);
       window.location.hash = view;
     } else {
-      this.#mainViewElm.appendChild(this.todolist);
+      this.#mainViewElm.appendChild(this.#homeViewElm);
       window.location.hash = 'home';
     }
   }
