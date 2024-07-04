@@ -4,11 +4,4 @@ import { App } from './app.js';
 const app = new App();
 await app.render('root');
 
-// Testing Support
-const resetState = () => {
-  localStorage.clear();
-  const app = new App();
-  app.render('root');
-};
-
-document.getElementById('reset-state').addEventListener('click', resetState);
+// Testing Support;

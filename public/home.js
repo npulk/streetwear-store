@@ -18,6 +18,7 @@ export class ItemList {
   #events = null;
   #items = null;
   #list = null;
+  #searchInput = null;
 
   constructor() {
     this.#events = Events.events();
@@ -29,30 +30,29 @@ export class ItemList {
     const parentContainer = document.createElement('div');
     parentContainer.id = 'parent-container';
 
-    const searchInput = document.createElement('input');
-    searchInput.id = 'search-input';
-    searchInput.type = 'text';
-    searchInput.placeholder = 'Search items...';
+    this.#searchInput = document.createElement('input'); // Use the class field
+    this.#searchInput.id = 'search-input';
+    this.#searchInput.type = 'text';
+    this.#searchInput.placeholder = 'Search items...';
+    this.#searchInput.addEventListener('input', this.#onSearch.bind(this)); // Add event listener
 
     const itemListElm = document.createElement('div');
     itemListElm.id = 'item-list';
 
     this.#list = document.createElement('ul');
-    const listItems = this.#items.map(item => this.#makeItem(item));
-
-    listItems.forEach(li => this.#list.appendChild(li));
+    this.#updateList(this.#items); // Refactored list update to a method
 
     itemListElm.appendChild(this.#list);
-    parentContainer.appendChild(searchInput);
+    parentContainer.appendChild(this.#searchInput);
     parentContainer.appendChild(itemListElm);
 
     return parentContainer;
   }
-
   #makeItem(item) {
     const li = document.createElement('li');
     li.classList.add('item');
     li.innerText = item.name;
+    li.textContent = item.name;
     li.id = item.id;
   
     const button = document.createElement('button');
@@ -66,6 +66,18 @@ export class ItemList {
   
     li.appendChild(button);
     return li;
+  }
+
+  #onSearch() {
+    const query = this.#searchInput.value.toLowerCase();
+    const filteredItems = this.#items.filter(item => item.name.toLowerCase().includes(query));
+    this.#updateList(filteredItems);
+  }
+
+  #updateList(items) {
+    this.#list.innerHTML = ''; // Clear the list
+    const listItems = items.map(item => this.#makeItem(item));
+    listItems.forEach(li => this.#list.appendChild(li));
   }
 
   async #getItems() {

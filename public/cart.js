@@ -18,6 +18,7 @@ export class CartView {
 
     const clearCartButton = document.createElement('button');
     clearCartButton.innerText = 'Clear Cart';
+    clearCartButton.classList.add('button');
     clearCartButton.addEventListener('click', () => this.clearCart());
     cartContainer.appendChild(clearCartButton);
 
@@ -95,6 +96,7 @@ class ItemList {
 
     const button = document.createElement('button');
     button.innerText = 'Remove from cart';
+    button.classList.add('button'); 
 
     button.addEventListener('click', async () => {
       await this.#removeFromCart(item.id);

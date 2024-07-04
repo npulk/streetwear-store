@@ -1,13 +1,15 @@
 .button {
     display: inline-block;
     padding: 10px 20px;
-    background-color: white;
-    color: black;
+    background-color: black;
+    color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    text-decoration: none; /* Remove underline */
+    text-decoration: none;
     text-align: center;
+    margin-top: 10px;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .button:hover {
@@ -31,17 +33,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100px; /* Adjust the height as needed */
+    height: 100px;
     width: 100%;
     margin-top: 100px;
     margin-bottom: 50px;
 }
 
-/* Style for the header link */
 .header-container .home-header a {
-    font-size: 2em; /* Adjust the font size as needed */
-    color: black; /* Adjust the color as needed */
-    text-decoration: none; /* Remove underline */
+    font-size: 2em;
+    color: black;
+    text-decoration: none;
     font-weight: bold;
 }
 
@@ -56,52 +57,65 @@
     padding: 0 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    margin: 0 auto 20px auto; /* Center the search input horizontally */
+    margin: 0 auto 20px auto;
 }
 
-/* Container for item cards */
+#cart-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+#item-list-container {
+    width: 100%;
+}
+
 #item-list {
     display: flex;
-    flex-wrap: wrap; /* Allows wrapping of items to the next line */
-    justify-content: center; /* Centers the items horizontally */
-    gap: 20px; /* Space between items */
-    padding: 0; /* Remove default padding */
-    list-style: none; /* Remove default list styling */
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    list-style: none;
+    width: 100%;
 }
 
-/* Style for each item card */
 .item {
     display: flex;
-    flex-direction: column; /* Stack content vertically */
-    align-items: center; /* Center content horizontally */
-    width: 200px; /* Set a fixed width for each card */
-    padding: 20px; /* Padding inside each card */
-    background-color: white; /* Background color of the card */
-    border: 1px solid #ccc; /* Border around the card */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    padding: 20px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-bottom: 10px;
 }
 
-/* Style for the button inside each item card */
 .item button {
-    margin-top: 10px; /* Space above the button */
-    padding: 10px 20px; /* Padding inside the button */
-    background-color: black; /* Button background color */
-    color: white; /* Button text color */
-    border: none; /* Remove button border */
-    border-radius: 5px; /* Rounded corners for the button */
-    cursor: pointer; /* Pointer cursor on hover */
-    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for hover effects */
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .item button:hover {
-    background-color: maroon; /* Darker background on hover */
+    background-color: maroon;
 }
 
-.parent-container { /* Replace .parent-container with the actual class or ID of the parent container */
+.parent-container {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center align the children if needed */
+    align-items: center;
 }
 
 .button:hover, .header-container .home-header a:hover {
